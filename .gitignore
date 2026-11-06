@@ -16,8 +16,12 @@ venv/
 env/
 
 # Django
+db.sqlite3
 *.sqlite3
-media/
+/static/*
+!/static/.gitkeep
+/media/*
+!/media/.gitkeep
 staticfiles/
 
 # Node / build
