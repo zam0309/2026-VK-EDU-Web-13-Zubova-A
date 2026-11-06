@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Как решить уравнение 2x + 3 = 11? | AskPupkin</title>
+    <link rel="icon" href="static/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="static/img/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="border-bottom">
+        <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
+            <a href="index.html" class="logo">AskPupkin</a>
+            <form class="header-search" role="search">
+                <input type="search" name="q" class="form-control" placeholder="Поиск" aria-label="Поиск">
+            </form>
+            <a href="ask.html" class="btn btn-success">ASK!</a>
+            <div class="ms-auto">
+                <a href="login.html">log in</a>
+                <a href="signup.html" class="ms-2">register</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container flex-grow-1 py-4">
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="d-flex gap-3 mb-4">
+                    <div>
+                        <img src="static/img/avatar-placeholder.svg" class="avatar avatar-big" alt="avatar">
+                        <div class="vote">
+                            <button class="btn btn-sm btn-outline-success">▲</button>
+                            <div class="fw-bold">5</div>
+                            <button class="btn btn-sm btn-outline-danger">▼</button>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h2>Как решить уравнение 2x + 3 = 11?</h2>
+                        <p>Перенёс 3 вправо, а дальше запутался. Подскажите, как найти x? Пробовал подставлять числа наугад, но хочется понять, как решать правильно.</p>
+                        <div class="small">
+                            Tags: <a href="tag.html">алгебра</a> <a href="tag.html">уравнения</a>
+                            <span class="ms-3">answers: 2</span>
+                            <span class="ms-3 text-secondary">2 часа назад</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card mb-3 answer-correct">
+                    <div class="card-body d-flex gap-3">
+                        <div>
+                            <img src="static/img/avatar-placeholder.svg" class="avatar" alt="avatar">
+                            <div class="vote">
+                            <button class="btn btn-sm btn-success">▲</button>
+                            <div class="fw-bold">5</div>
+                            <button class="btn btn-sm btn-outline-danger">▼</button>
+                        </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="card-text">Сначала вычти 3 из обеих частей: 2x = 8. Потом раздели обе части на 2: x = 4. Проверка: 2 · 4 + 3 = 11.</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="correct1" checked>
+                                <label class="form-check-label" for="correct1">Correct!</label>
+                            </div>
+                            <div class="small text-secondary mt-2">1 час назад</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body d-flex gap-3">
+                        <div>
+                            <img src="static/img/avatar-placeholder.svg" class="avatar" alt="avatar">
+                            <div class="vote">
+                            <button class="btn btn-sm btn-outline-success">▲</button>
+                            <div class="fw-bold">3</div>
+                            <button class="btn btn-sm btn-outline-danger">▼</button>
+                        </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="card-text">Можно перенести 3 вправо с минусом: 2x = 11 − 3 = 8, значит x = 4.</p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="correct2">
+                                <label class="form-check-label" for="correct2">Correct!</label>
+                            </div>
+                            <div class="small text-secondary mt-2">2 час назад</div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="pagination">
+                    <li class="page-item active"><span class="page-link">1</span></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item"><a class="page-link" href="#">19</a></li>
+                </ul>
+                <hr>
+                <form>
+                    <textarea class="form-control mb-1" rows="4" maxlength="3000" placeholder="Enter your answer here..."></textarea>
+                    <div class="form-text mb-2">Не больше 3000 символов.</div>
+                    <button type="submit" class="btn btn-success">Answer</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h3>Popular Tags</h3>
+                <p class="tags">
+                    <a href="tag.html" class="text-danger fs-5">алгебра</a>
+                    <a href="tag.html" class="text-dark">геометрия</a>
+                    <a href="tag.html" class="text-success fs-5">уравнения</a>
+                    <a href="tag.html" class="text-dark">проценты</a>
+                    <a href="tag.html" class="text-danger">дроби</a>
+                    <a href="tag.html" class="text-dark">арифметика</a>
+                    <a href="tag.html" class="text-success">тригонометрия</a>
+                </p>
+                <h3 class="mt-4">Best Members</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">Пифагор</a></li>
+                    <li class="mb-2"><a href="#">Евклид</a></li>
+                    <li class="mb-2"><a href="#">Леонард Эйлер</a></li>
+                    <li class="mb-2"><a href="#">Софья Ковалевская</a></li>
+                    <li class="mb-2"><a href="#">Николай Лобачевский</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top py-3">
+        <div class="container">AskPupkin, 2026</div>
+    </footer>
+
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
