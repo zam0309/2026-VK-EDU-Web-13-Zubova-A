@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Вход | AskPupkin</title>
+    <link rel="icon" href="static/img/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="static/img/icon.ico" sizes="any">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="border-bottom">
+        <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
+            <a href="index.html" class="logo">AskPupkin</a>
+            <form class="header-search" role="search">
+                <input type="search" name="q" class="form-control" placeholder="Поиск" aria-label="Поиск">
+            </form>
+            <a href="ask.html" class="btn btn-success">ASK!</a>
+            <div class="ms-auto">
+                <a href="login.html">log in</a>
+                <a href="signup.html" class="ms-2">register</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container flex-grow-1 py-4">
+        <div class="row g-4">
+            <div class="col-md-8">
+                <h2 class="mb-3">Log In</h2>
+                <p class="text-danger">Sorry, wrong login or password!</p>
+                <form>
+                    <div class="row mb-3">
+                        <label for="login" class="col-sm-3 col-form-label">Login</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="login" maxlength="30" placeholder="Enter your login here">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" maxlength="128">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9 offset-sm-3">
+                            <button type="submit" class="btn btn-success">Log in!</button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-9 offset-sm-3"><a href="signup.html">create new account</a></div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h3>Popular Tags</h3>
+                <p class="tags">
+                    <a href="tag.html" class="text-danger fs-5">алгебра</a>
+                    <a href="tag.html" class="text-dark">геометрия</a>
+                    <a href="tag.html" class="text-success fs-5">уравнения</a>
+                    <a href="tag.html" class="text-dark">проценты</a>
+                    <a href="tag.html" class="text-danger">дроби</a>
+                    <a href="tag.html" class="text-dark">арифметика</a>
+                    <a href="tag.html" class="text-success">тригонометрия</a>
+                </p>
+                <h3 class="mt-4">Best Members</h3>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#">Пифагор</a></li>
+                    <li class="mb-2"><a href="#">Евклид</a></li>
+                    <li class="mb-2"><a href="#">Леонард Эйлер</a></li>
+                    <li class="mb-2"><a href="#">Софья Ковалевская</a></li>
+                    <li class="mb-2"><a href="#">Николай Лобачевский</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top py-3">
+        <div class="container">AskPupkin, 2026</div>
+    </footer>
+
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
