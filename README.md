@@ -1,26 +1,34 @@
-#  ДЗ 1 (статическая верстка)
+# ДЗ2 проект на Django
 
-## Как открыть
-Откройте файл `public/index.html` в браузере
+## Запуск локально
 
-можно запустить локальный сервер:
-
-```bash
-cd public
-python3 -m http.server 8000
 ```
-затем откройте http://localhost:8000/index.html.
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+На Linux/macOS вместо второй строки: `source venv/bin/activate`
+
+Сайт: http://127.0.0.1:8000/
+
+## Запуск через Docker
+
+```
+docker compose up --build
+```
+
+Сайт: http://localhost:8000/
 
 ## Страницы
 
-| Страница | Файл | Содержание |
-|---|---|---|
-| base | `public/base.html` | общий layout: header, main, sidebar, footer |
-| index | `public/index.html` | список новых вопросов с пагинацией |
-| hot | `public/hot.html` | список популярных вопросов |
-| tag | `public/tag.html` | вопросы по тегу |
-| question | `public/question.html` | вопрос, ответы, пагинация ответов, форма ответа |
-| ask | `public/ask.html` | форма нового вопроса |
-| login | `public/login.html` | форма входа |
-| signup | `public/signup.html` | форма регистрации |
-| profile | `public/profile.html` | настройки профиля (шапка в состоянии «авторизован») |
+- `/` - новые вопросы
+- `/hot/` - популярные вопросы
+- `/tag/<tag>/` - вопросы по тегу
+- `/question/<id>/` - вопрос с ответами
+- `/ask/` - новый вопрос
+- `/login/` - вход
+- `/signup/` - регистрация
+- `/profile/` - настройки профиля

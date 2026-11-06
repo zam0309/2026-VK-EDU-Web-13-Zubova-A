@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Популярные вопросы{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Hot Questions <a href="{% url 'index' %}" class="fs-6 ms-2">New Questions</a></h2>
+{% for question in page %}
+    {% include 'questions/includes/question_card.html' %}
+{% empty %}
+    <p>Вопросов пока нет.</p>
+{% endfor %}
+{% include 'core/includes/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Log In</h2>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <label for="login" class="col-sm-3 col-form-label">Login</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="login" name="login" maxlength="30" placeholder="Enter your login here">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="password" class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" id="password" name="password" maxlength="128">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-success">Log in!</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-sm-9 offset-sm-3"><a href="{% url 'signup' %}">create new account</a></div>
+    </div>
+</form>
+{% endblock %}

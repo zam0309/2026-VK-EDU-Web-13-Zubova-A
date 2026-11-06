@@ -1,0 +1,16 @@
+{% load static %}
+<div class="card mb-3 {% if answer.is_correct %}answer-correct{% endif %}">
+    <div class="card-body d-flex gap-3">
+        <div>
+            <img src="{% static 'core/img/avatar.svg' %}" class="avatar" alt="avatar">
+            {% include 'core/includes/vote.html' with rating=answer.rating %}
+        </div>
+        <div class="flex-grow-1">
+            <p class="card-text">{{ answer.text }}</p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="correct{{ answer.id }}" {% if answer.is_correct %}checked{% endif %}>
+                <label class="form-check-label" for="correct{{ answer.id }}">Correct!</label>
+            </div>
+        </div>
+    </div>
+</div>

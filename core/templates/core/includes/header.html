@@ -1,0 +1,25 @@
+{% load static %}
+<header class="border-bottom">
+    <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
+        <a href="{% url 'index' %}" class="logo">AskPupkin</a>
+        <form class="header-search" role="search">
+            <input type="search" name="q" class="form-control" placeholder="Поиск">
+        </form>
+        <a href="{% url 'ask' %}" class="btn btn-success">ASK!</a>
+        {% if is_auth %}
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <img src="{% static 'core/img/avatar.svg' %}" class="avatar-small" alt="avatar">
+                <div>
+                    <div>Dr. Pepper</div>
+                    <a href="{% url 'profile' %}">settings</a>
+                    <a href="{% url 'login' %}" class="ms-2">log out</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="ms-auto">
+                <a href="{% url 'login' %}">log in</a>
+                <a href="{% url 'signup' %}" class="ms-2">register</a>
+            </div>
+        {% endif %}
+    </div>
+</header>

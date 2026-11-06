@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Настройки{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Settings: Dr. Pepper</h2>
+<form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <label for="login" class="col-sm-3 col-form-label">Login</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="login" name="login" maxlength="30" value="dr_pepper">
+            <div class="form-text">От 3 до 30 символов.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="email" class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+            <input type="email" class="form-control" id="email" name="email" maxlength="254" value="dr.pepper@mail.ru">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="nickname" class="col-sm-3 col-form-label">NickName</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="nickname" name="nickname" maxlength="40" value="Dr. Pepper">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="avatar" class="col-sm-3 col-form-label">Upload avatar</label>
+        <div class="col-sm-9">
+            <img src="{% static 'core/img/avatar.svg' %}" class="avatar avatar-big mb-2" alt="avatar">
+            <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*">
+            <div class="form-text">JPG или PNG, до 2 МБ.</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ question.title }}{% endblock %}
+
+{% block content %}
+<div class="d-flex gap-3 mb-4">
+    <div>
+        <img src="{% static 'core/img/avatar.svg' %}" class="avatar avatar-big" alt="avatar">
+        {% include 'core/includes/vote.html' with rating=question.rating %}
+    </div>
+    <div class="flex-grow-1">
+        <h2>{{ question.title }}</h2>
+        <p>{{ question.text }}</p>
+        <div class="small">
+            {% include 'questions/includes/tags.html' with tags=question.tags %}
+        </div>
+    </div>
+</div>
+<hr>
+{% for answer in page %}
+    {% include 'questions/includes/answer_card.html' %}
+{% endfor %}
+{% include 'core/includes/pagination.html' %}
+<hr>
+<form method="post" action="{% url 'question' question.id %}">
+    {% csrf_token %}
+    <textarea class="form-control mb-2" name="text" rows="4" placeholder="Enter your answer here..."></textarea>
+    <button type="submit" class="btn btn-success">Answer</button>
+</form>
+{% endblock %}

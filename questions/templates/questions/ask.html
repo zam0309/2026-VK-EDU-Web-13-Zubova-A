@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Новый вопрос{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">New Question</h2>
+<form method="post" action="{% url 'ask' %}">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <label for="title" class="col-sm-3 col-form-label">Title</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="title" name="title" maxlength="100">
+            <div class="form-text">Не больше 100 символов.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="text" class="col-sm-3 col-form-label">Text</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" id="text" name="text" rows="8" maxlength="5000"></textarea>
+            <div class="form-text">Не больше 5000 символов.</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="tags" class="col-sm-3 col-form-label">Tags</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="tags" name="tags" maxlength="100">
+            <div class="form-text">Через запятую, не больше 3 тегов.</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-success">ASK!</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
