@@ -6,24 +6,28 @@
 <h2 class="mb-3">New Question</h2>
 <form method="post" action="{% url 'ask' %}">
     {% csrf_token %}
+    {% include 'core/includes/errors.html' with errors=form.non_field_errors %}
     <div class="row mb-3">
         <label for="title" class="col-sm-3 col-form-label">Title</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="title" name="title" maxlength="100">
+            {{ form.title }}
+            {% include 'core/includes/errors.html' with errors=form.title.errors %}
             <div class="form-text">Не больше 100 символов.</div>
         </div>
     </div>
     <div class="row mb-3">
         <label for="text" class="col-sm-3 col-form-label">Text</label>
         <div class="col-sm-9">
-            <textarea class="form-control" id="text" name="text" rows="8" maxlength="5000"></textarea>
+            {{ form.text }}
+            {% include 'core/includes/errors.html' with errors=form.text.errors %}
             <div class="form-text">Не больше 5000 символов.</div>
         </div>
     </div>
     <div class="row mb-3">
         <label for="tags" class="col-sm-3 col-form-label">Tags</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="tags" name="tags" maxlength="100">
+            {{ form.tags }}
+            {% include 'core/includes/errors.html' with errors=form.tags.errors %}
             <div class="form-text">Через запятую, не больше 3 тегов.</div>
         </div>
     </div>

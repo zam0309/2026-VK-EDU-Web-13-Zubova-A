@@ -5,14 +5,28 @@
         <form class="header-search" role="search">
             <input type="search" name="q" class="form-control" placeholder="Поиск">
         </form>
-        <a href="{% url 'ask' %}" class="btn btn-success">ASK!</a>
-        {% if is_auth %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'ask' %}" class="btn btn-success">ASK!</a>
+        {% else %}
+            <span title="Войдите, чтобы задать вопрос">
+                <button class="btn btn-success opacity-100" type="button" disabled>ASK!</button>
+            </span>
+        {% endif %}
+        {% if user.is_authenticated %}
             <div class="d-flex align-items-center gap-2 ms-auto">
-                <img src="{% static 'core/img/avatar.svg' %}" class="avatar-small" alt="avatar">
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" class="avatar-small" alt="avatar">
+                {% else %}
+                    <img src="{% static 'core/img/avatar.svg' %}" class="avatar-small" alt="avatar">
+                {% endif %}
                 <div>
-                    <div>Dr. Pepper</div>
+                    <div>{{ user.first_name|default:user.username }}</div>
                     <a href="{% url 'profile' %}">settings</a>
-                    <a href="{% url 'login' %}" class="ms-2">log out</a>
+                    <form method="post" action="{% url 'logout' %}" class="d-inline ms-2">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="btn btn-link p-0 border-0 align-baseline">log out</button>
+                    </form>
                 </div>
             </div>
         {% else %}

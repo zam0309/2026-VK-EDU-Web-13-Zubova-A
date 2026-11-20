@@ -5,7 +5,7 @@
 <div class="d-flex gap-3 mb-4">
     <div>
         {% include 'core/includes/avatar.html' with author=question.author avatar_class='avatar-big' %}
-        {% include 'core/includes/vote.html' with rating=question.rating %}
+        {% include 'core/includes/vote.html' with item=question kind='question' %}
     </div>
     <div class="flex-grow-1">
         <h2>{{ question.title }}</h2>
@@ -23,9 +23,15 @@
 {% endfor %}
 {% include 'core/includes/pagination.html' %}
 <hr>
-<form>
-    <textarea class="form-control mb-1" rows="4" maxlength="3000" placeholder="Enter your answer here..." aria-label="Текст ответа"></textarea>
+<form method="post" action="{{ request.get_full_path }}">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        {{ form.text }}
+        {% include 'core/includes/errors.html' with errors=form.text.errors %}
+    {% else %}
+        <textarea class="form-control mb-1 bg-white" rows="4" maxlength="3000" placeholder="Enter your answer here..." aria-label="Текст ответа" title="Войдите, чтобы ответить" disabled></textarea>
+    {% endif %}
     <div class="form-text mb-2">Не больше 3000 символов.</div>
-    <button type="button" class="btn btn-success" aria-disabled="true">Answer</button>
+    <span {% if not user.is_authenticated %}title="Войдите, чтобы ответить"{% endif %}><button type="submit" class="btn btn-success{% if not user.is_authenticated %} opacity-100{% endif %}" {% if not user.is_authenticated %}disabled{% endif %}>Answer</button></span>
 </form>
 {% endblock %}

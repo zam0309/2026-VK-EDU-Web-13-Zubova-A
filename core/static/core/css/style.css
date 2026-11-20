@@ -66,12 +66,14 @@ header, footer {
 /* зелёный цвет */
 .btn-success,
 .btn-success:hover,
-.btn-success:active {
+.btn-success:active,
+.btn-success:disabled {
     color: white;
     background-image: none;
 }
 
-.btn-success {
+.btn-success,
+.btn-success:disabled {
     background-color: #66bb6a;
     border-color: #66bb6a;
 }
@@ -82,7 +84,8 @@ header, footer {
     border-color: #57a05b;
 }
 
-.btn-outline-success {
+.btn-outline-success,
+.btn-outline-success:disabled {
     color: #66bb6a;
     border-color: #66bb6a;
 }

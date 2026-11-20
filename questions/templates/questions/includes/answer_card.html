@@ -1,13 +1,18 @@
-<div class="card mb-3 {% if answer.is_correct %}answer-correct{% endif %}">
+<div id="answer-{{ answer.pk }}" class="card mb-3 {% if answer.is_correct %}answer-correct{% endif %}">
     <div class="card-body d-flex gap-3">
         <div>
             {% include 'core/includes/avatar.html' with author=answer.author %}
-            {% include 'core/includes/vote.html' with rating=answer.rating %}
+            {% include 'core/includes/vote.html' with item=answer kind='answer' %}
         </div>
         <div class="flex-grow-1">
             <p class="card-text">{{ answer.text }}</p>
             <div class="form-check">
-                <input class="form-check-input opacity-100" type="checkbox" id="correct{{ answer.id }}" disabled {% if answer.is_correct %}checked{% endif %}>
+                <input class="form-check-input opacity-100" type="checkbox" id="correct{{ answer.id }}"
+                    {% if user.pk == question.author_id %}
+                        data-correct="{% url 'correct' question.pk %}" value="{{ answer.pk }}"
+                    {% else %}
+                        disabled title="{% if user.is_authenticated %}Только автор вопроса может отметить ответ{% else %}Войдите, чтобы отметить ответ{% endif %}"
+                    {% endif %} {% if answer.is_correct %}checked{% endif %}>
                 <label class="form-check-label opacity-100" for="correct{{ answer.id }}">Correct!</label>
             </div>
         </div>

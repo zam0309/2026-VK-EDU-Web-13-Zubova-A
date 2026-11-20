@@ -1,12 +1,16 @@
-# AskPupkin. ДЗ 3
+# AskPupkin. ДЗ 4
 
-В этой работе подключила PostgreSQL. Вопросы, ответы, теги и оценки хранятся в базе. Формы пока только для примера.
+Добавила регистрацию, вход и выход. В настройках профиля можно изменить логин, имя, почту и загрузить аватар.
+
+После входа можно создать вопрос с тегами, ответить на вопрос и поставить плюс или минус. После отправки ответа сайт открывает нужную страницу и прокручивает её до нового ответа. Автор вопроса может отметить правильный ответ. Оценки и отметка обновляются без перезагрузки страницы.
+
+Если в форме есть ошибка, сайт показывает её и сохраняет введённый текст.
 
 ## Как запустить
 
-Для локального запуска нужны Python 3.13 и PostgreSQL. Создай в PostgreSQL пользователя `askpupkin` и базу `askpupkin` с этим владельцем. Сделай копию `.env.example` с именем `.env.local`. Впиши туда пароль от базы и свой `SECRET_KEY`.
+Для локального запуска нужны Python 3.13 и PostgreSQL. Создайте в PostgreSQL пользователя `askpupkin` и базу `askpupkin` с этим владельцем. Сделайте копию `.env.example` с именем `.env.local`. Укажите в ней пароль от базы и свой `SECRET_KEY`.
 
-В терминале PyCharm с активным окружением `venv` выполни:
+В терминале PyCharm с активным окружением `venv` выполните следующие команды.
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -14,11 +18,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Если окружения ещё нет, создай его в PyCharm на Python 3.13 или командой `python -m venv venv`. В Windows его можно активировать командой `.\venv\Scripts\Activate.ps1`, в Linux и macOS командой `source venv/bin/activate`.
+Если окружения ещё нет, создайте его в PyCharm на Python 3.13 или командой `python -m venv venv`. В Windows активируйте его командой `.\venv\Scripts\Activate.ps1`. В Linux и macOS используйте `source venv/bin/activate`.
 
 ## Через Docker
 
-Скопируй `.env.example` в `.env.docker`. Поставь `DB_HOST=db`, укажи `SECRET_KEY` и пароль для PostgreSQL. База поднимется вместе с сайтом, миграции применятся при запуске.
+Скопируйте `.env.example` в `.env.docker`. Укажите `DB_HOST=db`, `SECRET_KEY` и пароль для PostgreSQL. База запустится вместе с сайтом, миграции применятся при запуске. Загруженные аватары раздаёт nginx.
 
 ```bash
 docker compose up --build
@@ -26,14 +30,16 @@ docker compose up --build
 
 ## Данные и админка
 
+Чтобы добавить тестовые данные и создать пользователя для входа в админку, выполните следующие команды.
+
 ```bash
 python manage.py fill_db 20
 python manage.py createsuperuser
 ```
 
-При запуске через Docker добавь перед каждой командой `docker compose exec web`. Для проверки на полном объёме используй `fill_db 10001`. Команда добавляет записи к тем, что уже есть. Минимальное значение `ratio` равно 2.
+При запуске через Docker добавьте `docker compose exec web` перед каждой командой. Для проверки на полном объёме используйте `fill_db 10001`. Команда добавляет записи к тем, что уже есть. Минимальное значение `ratio` равно 2.
 
-Сайт открывается на [localhost:8000](http://localhost:8000/), а админка на [localhost:8000/admin/](http://localhost:8000/admin/). Панель Django Debug Toolbar доступна при `DEBUG=True`.
+Сайт открывается на [localhost:8000](http://localhost:8000/), админка на [localhost:8000/admin/](http://localhost:8000/admin/). Панель Django Debug Toolbar доступна при `DEBUG=True`.
 
 ## Страницы
 

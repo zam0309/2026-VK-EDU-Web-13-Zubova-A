@@ -1,5 +1,5 @@
-<div class="vote">
-    <button class="btn btn-sm btn-outline-success" type="button" aria-disabled="true" tabindex="-1" aria-label="Плюс">▲</button>
-    <div class="fw-bold">{{ rating }}</div>
-    <button class="btn btn-sm btn-outline-danger" type="button" aria-disabled="true" tabindex="-1" aria-label="Минус">▼</button>
+<div class="vote" {% if user.is_authenticated %}data-vote="{% url 'vote' kind item.pk %}"{% else %}title="Войдите, чтобы поставить оценку"{% endif %}>
+    <button class="btn btn-sm btn-outline-success{% if not user.is_authenticated %} opacity-100{% endif %}" type="button" value="1" {% if not user.is_authenticated %}disabled{% endif %} aria-label="Плюс">▲</button>
+    <div class="fw-bold">{{ item.rating }}</div>
+    <button class="btn btn-sm btn-outline-danger{% if not user.is_authenticated %} opacity-100{% endif %}" type="button" value="-1" {% if not user.is_authenticated %}disabled{% endif %} aria-label="Минус">▼</button>
 </div>
