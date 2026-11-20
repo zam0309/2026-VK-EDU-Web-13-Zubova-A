@@ -1,10 +1,10 @@
 <h3>Popular Tags</h3>
 <p class="tags">
-    <a href="{% url 'tag' 'алгебра' %}" class="text-danger fs-5">алгебра</a>
-    <a href="{% url 'tag' 'геометрия' %}" class="text-dark">геометрия</a>
-    <a href="{% url 'tag' 'уравнения' %}" class="text-success fs-5">уравнения</a>
-    <a href="{% url 'tag' 'проценты' %}" class="text-dark">проценты</a>
-    <a href="{% url 'tag' 'дроби' %}" class="text-danger">дроби</a>
+    {% for tag in popular_tags %}
+        <a href="{{ tag.get_absolute_url }}" class="{% cycle 'text-danger fs-5' 'text-dark' 'text-success fs-5' 'text-dark' 'text-danger' %}">{{ tag.name }}</a>
+    {% empty %}
+        Тегов пока нет.
+    {% endfor %}
 </p>
 <h3 class="mt-4">Best Members</h3>
 <ul class="list-unstyled">

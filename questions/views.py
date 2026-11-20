@@ -1,53 +1,31 @@
-from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
+from .models import Answer, Question, Tag
 from .pagination import paginate
 
-TAGS = ['алгебра', 'геометрия', 'уравнения', 'проценты', 'дроби']
 
-QUESTIONS = []
-for i in range(1, 101):
-    QUESTIONS.append({
-        'id': i,
-        'title': 'Вопрос ' + str(i),
-        'text': 'Текст вопроса ' + str(i),
-        'tags': [TAGS[i % 5], TAGS[(i + 2) % 5]],
-        'rating': i % 15,
-        'answers_count': i % 7,
-    })
-
-ANSWERS = []
-for i in range(1, 31):
-    ANSWERS.append({
-        'id': i,
-        'text': 'Текст ответа ' + str(i),
-        'rating': i % 6,
-        'is_correct': i == 1,
-    })
+def question_list(request, questions, template, **context):
+    context['page'] = paginate(questions, request)
+    return render(request, template, context)
 
 
 def index(request):
-    page = paginate(QUESTIONS, request)
-    return render(request, 'questions/index.html', {'page': page})
+    return question_list(request, Question.objects.new(), 'questions/index.html')
 
 
 def hot(request):
-    hot_questions = sorted(QUESTIONS, key=lambda q: q['rating'], reverse=True)
-    page = paginate(hot_questions, request)
-    return render(request, 'questions/hot.html', {'page': page})
+    return question_list(request, Question.objects.hot(), 'questions/hot.html')
 
 
 def tag(request, tag_name):
-    tag_questions = [q for q in QUESTIONS if tag_name in q['tags']]
-    page = paginate(tag_questions, request)
-    return render(request, 'questions/tag.html', {'page': page, 'tag_name': tag_name})
+    item = get_object_or_404(Tag, name=tag_name)
+    questions = Question.objects.by_tag(item)
+    return question_list(request, questions, 'questions/tag.html', tag_name=item.name)
 
 
 def question(request, question_id):
-    if question_id < 1 or question_id > len(QUESTIONS):
-        raise Http404('Вопрос не найден')
-    item = QUESTIONS[question_id - 1]
-    page = paginate(ANSWERS, request, per_page=5)
+    item = get_object_or_404(Question.objects.cards(), pk=question_id)
+    page = paginate(Answer.objects.for_question(item), request, per_page=30)
     return render(request, 'questions/question.html', {'question': item, 'page': page})
 
 

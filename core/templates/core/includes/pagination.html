@@ -1,10 +1,13 @@
+{% if page %}
 <ul class="pagination flex-wrap">
     {% if page.has_previous %}
         <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">&laquo;</a></li>
     {% endif %}
-    {% for number in page.paginator.page_range %}
+    {% for number in page.numbers %}
         {% if number == page.number %}
-            <li class="page-item active"><span class="page-link">{{ number }}</span></li>
+            <li class="page-item active" aria-current="page"><span class="page-link">{{ number }}</span></li>
+        {% elif number == page.paginator.ELLIPSIS %}
+            <li class="page-item disabled"><span class="page-link">{{ number }}</span></li>
         {% else %}
             <li class="page-item"><a class="page-link" href="?page={{ number }}">{{ number }}</a></li>
         {% endif %}
@@ -13,3 +16,4 @@
         <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">&raquo;</a></li>
     {% endif %}
 </ul>
+{% endif %}

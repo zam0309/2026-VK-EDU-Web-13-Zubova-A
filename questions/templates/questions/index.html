@@ -4,10 +4,5 @@
 
 {% block content %}
 <h2 class="mb-3">New Questions <a href="{% url 'hot' %}" class="fs-6 ms-2">Hot Questions</a></h2>
-{% for question in page %}
-    {% include 'questions/includes/question_card.html' %}
-{% empty %}
-    <p>Вопросов пока нет.</p>
-{% endfor %}
-{% include 'core/includes/pagination.html' %}
+{% include 'questions/includes/question_list.html' %}
 {% endblock %}
